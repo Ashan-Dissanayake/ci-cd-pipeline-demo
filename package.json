@@ -1,0 +1,12 @@
+{
+  "name": "hello-cicd",
+  "version": "1.0.0",
+  "description": "A simple Node.js application for demonstrating CI/CD.",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
