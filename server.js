@@ -1,15 +1,24 @@
+const http = require('http');
+const client = require('prom-client');
 
-const express = require('express');
+// Create a Registry
+const register = new client.Registry();
+client.collectDefaultMetrics({ register });
 
-const app = express();
-
-const PORT = process.env.PORT || 3000;
-
-
-app.get('/', (req, res) => {
-  res.send('Hello CICD!, This is your mainden');
+// HTTP server
+const server = http.createServer(async (req, res) => {
+  if (req.url === '/metrics') {
+    res.writeHead(200, { 'Content-Type': register.contentType });
+    res.end(await register.metrics());
+  } else if (req.url === '/') {
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('Hello World');
+  } else {
+    res.writeHead(404);
+    res.end();
+  }
 });
 
-app.listen(PORT, () => {
- console.log(`Server is listening on port ${PORT}`);
+server.listen(3000, () => {
+  console.log('Server running on port 3000');
 });

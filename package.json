@@ -1,12 +1,12 @@
 {
-  "name": "hello-cicd",
+  "name": "hello-prom",
   "version": "1.0.0",
-  "description": "A simple Node.js application for demonstrating CI/CD.",
+  "description": "A simple Node.js application for demonstrating Prometheus",
   "main": "server.js",
   "scripts": {
     "start": "node server.js"
   },
   "dependencies": {
-    "express": "^4.19.2"
+    "prom-client": "^14.0.0"
   }
 }
